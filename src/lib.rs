@@ -13,68 +13,36 @@ mod into_cdrs_value;
 mod try_from_row;
 mod try_from_udt;
 
-use proc_macro::TokenStream;
+use db_mirror::impl_db_mirror;
 use into_cdrs_value::impl_into_cdrs_value;
+use proc_macro::TokenStream;
 use try_from_row::impl_try_from_row;
 use try_from_udt::impl_try_from_udt;
-use db_mirror::impl_db_mirror;
 
 #[proc_macro_derive(DBMirror)]
 pub fn db_mirror(input: TokenStream) -> TokenStream {
-    // Construct a string representation of the type definition
-    let s = input.to_string();
-
-    // Parse the string representation
-    let ast = syn::parse_derive_input(&s).unwrap();
-
-    // Build the impl
-    let gen = impl_db_mirror(&ast);
-
-    // Return the generated impl
-    gen.parse().unwrap()
+    // Construct ast of the type definition
+    let ast = syn::parse(input).unwrap();
+    impl_db_mirror(&ast)
 }
 
 #[proc_macro_derive(IntoCDRSValue)]
 pub fn into_cdrs_value(input: TokenStream) -> TokenStream {
-    // Construct a string representation of the type definition
-    let s = input.to_string();
-
-    // Parse the string representation
-    let ast = syn::parse_derive_input(&s).unwrap();
-
-    // Build the impl
-    let gen = impl_into_cdrs_value(&ast);
-
-    // Return the generated impl
-    gen.parse().unwrap()
+    // Construct ast of the type definition
+    let ast = syn::parse(input).unwrap();
+    impl_into_cdrs_value(&ast)
 }
 
 #[proc_macro_derive(TryFromRow)]
 pub fn try_from_row(input: TokenStream) -> TokenStream {
-    // Construct a string representation of the type definition
-    let s = input.to_string();
-
-    // Parse the string representation
-    let ast = syn::parse_derive_input(&s).unwrap();
-
-    // Build the impl
-    let gen = impl_try_from_row(&ast);
-
-    // Return the generated impl
-    gen.parse().unwrap()
+    // Construct ast of the type definition
+    let ast = syn::parse(input).unwrap();
+    impl_try_from_row(&ast)
 }
 
 #[proc_macro_derive(TryFromUDT)]
 pub fn try_from_udt(input: TokenStream) -> TokenStream {
-    // Construct a string representation of the type definition
-    let s = input.to_string();
-
-    // Parse the string representation
-    let ast = syn::parse_derive_input(&s).unwrap();
-
-    // Build the impl
-    let gen = impl_try_from_udt(&ast);
-
-    // Return the generated impl
-    gen.parse().unwrap()
+    // Construct ast of the type definition
+    let ast = syn::parse(input).unwrap();
+    impl_try_from_udt(&ast)
 }
