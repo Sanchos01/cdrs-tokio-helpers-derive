@@ -65,7 +65,7 @@ fn convert_field_into_rust(field: syn::Field) -> proc_macro2::TokenStream {
 }
 
 fn remove_r(s: String) -> String {
-    if &s[..2] == "r#" {
+    if s.len() > 2 && &s[..2] == "r#" {
         s[2..].to_string()
     } else {
         s
