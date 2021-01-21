@@ -4,7 +4,7 @@ extern crate cdrs_tokio;
 extern crate cdrs_tokio_helpers_derive;
 extern crate time;
 
-use time::Timespec;
+use time::PrimitiveDateTime;
 use std::collections::HashMap;
 use cdrs_tokio::types::AsRustType;
 use cdrs_tokio::types::value::{Bytes, Value};
@@ -24,7 +24,7 @@ struct Udt {
     pub vec: Vec<Vec<i32>>,
     pub map: HashMap<i64, N>,
     pub opt: Option<HashMap<i64, N>>,
-    pub my_timestamp: Option<Timespec>,
+    pub my_timestamp: Option<PrimitiveDateTime>,
 }
 
 // #[derive(Debug, IntoCDRSValue, TryFromRow, TryFromUDT)]

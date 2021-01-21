@@ -4,6 +4,6 @@ version = "0.1.0"
 authors = ["Alex Pikalov <alex.pikalov.khar@gmail.com>", "Kamil Rojewski <kamil.rojewski@gmail.com>"]
 
 [dependencies]
-time = "0.1.36"
+time = "0.2.16"
 cdrs-tokio-helpers-derive = { path = ".." }
 cdrs-tokio = "2.0"
